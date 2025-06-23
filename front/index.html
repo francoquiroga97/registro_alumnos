@@ -1,42 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Student API Client</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+  <meta charset="UTF-8">
+  <title>Inicio - StudentApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
 </head>
 <body>
-    <h1>Student API Client</h1>
 
-    <section>
-        <h2>Register Student</h2>
-        <input type="text" id="registerName" placeholder="Name">
-        <input type="text" id="registerCareer" placeholder="Career">
-        <button onclick="registerStudent()">Register</button>
-        <pre id="registerResult"></pre>
-    </section>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">StudentApp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="./registro.html" class="nav-link">👤 Registro</a></li>
+        <li><a href="./carreras.html" class="nav-link">🎓 Carreras</a></li>
+        <li><a href="https://isfdyt57.sambaweb.com.ar/" class="nav-link">🔗 Samba</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <section>
-        <h2>Get Student by ID</h2>
-        <input type="number" id="studentId" placeholder="Student ID">
-        <button onclick="getStudentById()">Get Student</button>
-        <pre id="getResult"></pre>
-    </section>
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="hero">
 
-    <section>
-        <h2>Get Students by Career</h2>
-        <input type="text" id="careerFilter" placeholder="Career">
-        <button onclick="getStudentsByCareer()">Get Students</button>
-        <pre id="careerResult"></pre>
-    </section>
+    <!-- Hero Text -->
+    <div class="hero-text">
+      <h1>🎓 Bienvenido a StudentApp</h1>
+      <p class="subtitle">
+        La plataforma inteligente y confiable para gestionar estudiantes de forma simple, rápida y eficiente. Tecnología al servicio de tu institución educativa.
+      </p>
+    </div>
 
-    <section>
-        <h2>Delete Student</h2>
-        <input type="number" id="deleteId" placeholder="Student ID">
-        <button onclick="deleteStudent()">Delete Student</button>
-        <pre id="deleteResult"></pre>
-    </section>
+    <!-- Layout: Carrusel + Tarjetas -->
+    <div class="hero-layout">
+      <!-- Carrusel -->
+      <div class="carousel-wrapper">
+        <div class="carousel-container">
+          <div class="carousel-slide"><img src="img/aulas1.jpg" alt="Slide 1"></div>
+          <div class="carousel-slide"><img src="img/biblioteca1.jpg" alt="Slide 2"></div>
+          <div class="carousel-slide"><img src="img/estudiantes1.jpg" alt="Slide 3"></div>
+        </div>
+        <button class="carousel-control prev">&#10094;</button>
+        <button class="carousel-control next">&#10095;</button>
+        <div class="carousel-indicators"></div>
+      </div>
 
-    <script src="app.js"></script>
+      <!-- Tarjetas -->
+      <div class="hero-actions">
+        <div class="action-card">
+          <h3>👤 Registro de Estudiantes</h3>
+          <p>Registra nuevos estudiantes en el sistema</p>
+          <a href="./registro.html" class="action-button">Ir al registro</a>
+        </div>
+        <div class="action-card">
+          <h3>📚 Nuestras Carreras</h3>
+          <p>Mira las carreras disponibles actualmente!</p>
+          <a href="./carreras.html" class="action-button">Ver carreras</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Instituto</h4>
+        <p>Formación Docente y Técnica</p>
+        <p>ISFDyT N°57</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>contacto@instituto.edu.ar</p>
+        <p>Tel: (123) 456-7890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 StudentApp - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="app.js"></script>
+  <script src="carousel.js"></script>
 </body>
 </html>

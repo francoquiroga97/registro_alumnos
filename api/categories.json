@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Ciencias Tecnológicas"
+  },
+  {
+    "id": 2,
+    "name": "Ciencias Sociales"
+  },
+  {
+    "id": 3,
+    "name": "Humanidades"
+  },
+  {
+    "id": 4,
+    "name": "Salud"
+  },
+  {
+    "id": 5,
+    "name": "Educación"
+  }
+]

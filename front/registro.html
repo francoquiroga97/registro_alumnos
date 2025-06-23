@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de estudiantes - StudentApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">StudentApp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="./index.html" class="nav-link">🏠 Inicio</a></li>
+        <li><a href="./carreras.html" class="nav-link">🎓 Carreras</a></li>
+        <li><a href="./nuevas-carreras.html" class="nav-link">➕ Nueva Carrera</a></li>
+        <li><a href="https://isfdyt57.sambaweb.com.ar/" class="nav-link">🔗 Samba</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <h1>📋 Registro de Estudiantes</h1>
+    
+    <div id="registro-container">
+      <div class="registro-card">
+        <h2>📝 Nuevo Estudiante</h2>
+        <div class="form-group">
+          <label for="registerName">Nombre completo:</label>
+          <input type="text" id="registerName" placeholder="Ej: Juan Pérez">
+          <div id="nameError" class="error-feedback" style="display: none;"></div>
+        </div>
+        <div class="form-group">
+          <label for="registerCareer">Carrera:</label>
+          <select id="registerCareer">
+            <option value="">Cargando carreras...</option>
+          </select>
+          <div id="careerError" class="error-feedback" style="display: none;"></div>
+        </div>
+        <button id="registerBtn" class="action-button">Registrar Estudiante</button>
+        <div id="registerResult" class="result-container"></div>
+      </div>
+
+      <div class="registro-card">
+        <h2>🔍 Buscar Estudiantes</h2>
+        <div class="search-tabs">
+          <button class="tab-button" data-tab="byId">Por ID</button>
+          <button class="tab-button" data-tab="byCareer">Por Carrera</button>
+        </div>
+        
+        <div id="searchById" class="search-tab-content active">
+          <div class="form-group">
+            <label for="studentId">ID del estudiante:</label>
+            <input type="number" id="studentId" placeholder="Ej: 123">
+            <div id="idSearchError" class="error-feedback" style="display: none;"></div>
+          </div>
+          <button id="searchByIdBtn" class="action-button">Buscar</button>
+          <div id="getResult" class="result-container"></div>
+        </div>
+        
+        <div id="searchByCareer" class="search-tab-content">
+          <div class="form-group">
+            <label for="careerFilter">Nombre de la carrera:</label>
+            <input type="text" id="careerFilter" placeholder="Ej: Ciencia de Datos">
+            <div id="careerSearchError" class="error-feedback" style="display: none;"></div>
+          </div>
+          <button id="searchByCareerBtn" class="action-button">Buscar</button>
+          <div id="careerResult" class="result-container"></div>
+        </div>
+      </div>
+
+      <div class="registro-card danger-card">
+        <h2>🗑️ Eliminar Estudiante</h2>
+        <div class="form-group">
+          <label for="deleteId">ID del estudiante:</label>
+          <input type="number" id="deleteId" placeholder="Ej: 123">
+          <div id="deleteError" class="error-feedback" style="display: none;"></div>
+        </div>
+        <button id="deleteBtn" class="danger-button">Eliminar Estudiante</button>
+        <div id="deleteResult" class="result-container"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Instituto</h4>
+        <p>Tecnicatura en Ciencia de Datos e IA</p>
+        <p>ISFDyT N°57</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>contacto@instituto.edu.ar</p>
+        <p>Tel: (123) 456-7890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 StudentApp - Todos los derechos reservados</p>
+    </div>
+  </footer>
+<script src="app.js" defer></script>
+</body>
+</html>

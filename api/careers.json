@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1748384378912,
+    "name": "Ingles",
+    "duration": "3",
+    "description": "Formación para enseñar el idioma inglés con enfoque en la didáctica, la fonética, la gramática y la cultura angloparlante. Prepara para desempeñarse como docente en distintos niveles educativos.",
+    "category": "Educación",
+    "emoji": "🎓"
+  },
+  {
+    "id": 1748384378913,
+    "name": "Seguridad e Higiene",
+    "duration": "4",
+    "description": "Formación técnica para prevenir riesgos laborales y proteger la salud de los trabajadores. Incluye normativa legal, evaluación de riesgos, control ambiental y gestión de la seguridad en distintos ámbitos laborales.",
+    "category": "Humanidades",
+    "emoji": "👷🏼​"
+  },
+  {
+    "id": 1748384378914,
+    "name": "Enfermería",
+    "duration": "3",
+    "description": "Formación técnica en el cuidado integral de la salud, con conocimientos en anatomía, farmacología, prácticas clínicas y ética profesional. Habilita para trabajar en hospitales, clínicas y centros de salud.",
+    "category": "Salud",
+    "emoji": "💉"
+  },
+  {
+    "id": 1748384378915,
+    "name": "Programación",
+    "duration": "4",
+    "description": "Carrera centrada en el desarrollo de software y aplicaciones. Se estudian lenguajes de programación, bases de datos, lógica computacional y metodologías ágiles para insertarse en el mundo tecnológico.",
+    "category": "Ciencias Tecnológicas",
+    "emoji": "💻"
+  },
+  {
+    "id": 1748384378916,
+    "name": "Ciencia de Datos",
+    "duration": "3",
+    "description": "Carrera orientada al análisis y procesamiento de datos mediante herramientas estadísticas, programación y aprendizaje automático. Capacita para tomar decisiones basadas en datos en múltiples sectores.",
+    "category": "Ciencias Tecnológicas",
+    "emoji": "🌐​"
+  },
+  {
+    "id": 1748384378919,
+    "name": "Economía",
+    "duration": 5,
+    "description": "Analiza la producción, distribución y consumo de bienes y servicios, así como los sistemas económicos y sus implicaciones sociales.",
+    "category": "Ciencias Sociales",
+    "emoji": "📊"
+  }
+]

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carreras Disponibles - StudentApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">StudentApp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">🏠 Inicio</a></li>
+        <li><a href="registro.html" class="nav-link">👤 Registro</a></li>
+        <li><a href="nuevas-carreras.html" class="nav-link">➕ Nueva Carrera</a></li>
+        <li><a href="categorias.html" class="nav-link">🗂️ Categorías</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <div class="page-header">
+      <h1>🎓 Carreras Disponibles</h1>
+      <div class="search-box">
+        <input type="text" id="careerSearch" placeholder="Buscar carreras..." oninput="filterCareers()">
+        <select id="categoryFilter" onchange="filterCareers()">
+          <option value="">Todas las categorías</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="career-stats">
+      <div class="stat-card">
+        <span class="stat-number" id="totalCareers">0</span>
+        <span class="stat-label">Carreras Totales</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="averageDuration">0</span>
+        <span class="stat-label">Años promedio</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="totalCategories">0</span>
+        <span class="stat-label">Categorías</span>
+      </div>
+    </div>
+
+    <div class="career-grid" id="careerGrid">
+      <div class="loader">Cargando carreras...</div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Instituto</h4>
+        <p>Tecnicatura en Ciencia de Datos e IA</p>
+        <p>ISFDyT N°57</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>contacto@instituto.edu.ar</p>
+        <p>Tel: (123) 456-7890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 StudentApp - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    const API_URL = "http://localhost:5001/api";
+    const headers = {
+      "Authorization": "Bearer 12345ABCDEF"
+    };
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadCategoryOptions();
+      await renderCareerCards();
+      calculateStats();
+    });
+
+    // Cargar opciones de categorías para el filtro
+    async function loadCategoryOptions() {
+      const select = document.getElementById("categoryFilter");
+      
+      try {
+        const response = await fetch(`${API_URL}/categories`, { headers });
+        if (!response.ok) throw new Error("Error al cargar categorías");
+        
+        const categories = await response.json();
+        
+        categories.forEach(category => {
+          const option = document.createElement("option");
+          option.value = category.name;
+          option.textContent = category.name;
+          select.appendChild(option);
+        });
+      } catch (error) {
+        console.error("Error al cargar categorías:", error);
+      }
+    }
+
+    // Obtener listado de carreras
+    async function getCareers() {
+      try {
+        const response = await fetch(`${API_URL}/careers`, { headers });
+        if (!response.ok) throw new Error("Error al cargar carreras");
+        return await response.json();
+      } catch (error) {
+        console.error("Error:", error);
+        showNotification("❌ Error al cargar carreras", false);
+        return [];
+      }
+    }
+
+    // Mostrar carreras en el grid
+    async function renderCareerCards(careers = null) {
+      const container = document.getElementById("careerGrid");
+      container.innerHTML = "<div class='loader'>Cargando carreras...</div>";
+      
+      const careersData = careers || await getCareers();
+      
+      if (careersData.length === 0) {
+        container.innerHTML = "<p class='no-results'>No hay carreras registradas.</p>";
+        return;
+      }
+      
+      container.innerHTML = careersData.map(career => `
+        <div class="career-card" data-category="${career.category || ''}">
+          <div class="career-emoji">${career.emoji || "🎓"}</div>
+          <div class="career-content">
+            <h3>${career.name}</h3>
+            <div class="career-meta">
+              <p><strong>Duración:</strong> ${career.duration || "-"} años</p>
+              ${career.category ? `<p><strong>Categoría:</strong> ${career.category}</p>` : ''}
+            </div>
+            ${career.description ? `<p class="career-description">${career.description}</p>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filtrar carreras por búsqueda y categoría
+    async function filterCareers() {
+      const searchTerm = document.getElementById("careerSearch").value.toLowerCase();
+      const categoryFilter = document.getElementById("categoryFilter").value;
+      const careers = await getCareers();
+      
+      const filtered = careers.filter(career => {
+        const matchesSearch = career.name.toLowerCase().includes(searchTerm) ||
+                            (career.description && career.description.toLowerCase().includes(searchTerm));
+        
+        const matchesCategory = !categoryFilter || 
+                              (career.category && career.category === categoryFilter);
+        
+        return matchesSearch && matchesCategory;
+      });
+      
+      await renderCareerCards(filtered);
+      calculateStats(filtered);
+    }
+
+    // Calcular estadísticas
+    async function calculateStats(careers = null) {
+      const careersData = careers || await getCareers();
+      const totalCareers = careersData.length;
+      
+      const durations = careersData.map(c => parseInt(c.duration) || 0).filter(d => d > 0);
+      const averageDuration = durations.length > 0 
+        ? (durations.reduce((a, b) => a + b, 0) / durations.length).toFixed(1)
+        : 0;
+      
+      const uniqueCategories = new Set(careersData.map(c => c.category).filter(Boolean));
+      
+      document.getElementById("totalCareers").textContent = totalCareers;
+      document.getElementById("averageDuration").textContent = averageDuration;
+      document.getElementById("totalCategories").textContent = uniqueCategories.size;
+    }
+
+    // Mostrar notificación
+    function showNotification(message, isSuccess = true) {
+      const notification = document.createElement('div');
+      notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
