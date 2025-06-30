@@ -61,12 +61,15 @@ function loadHomePage() {
  * @returns {Promise<Array>} Lista de carreras
  */
 async function getAllCareers() {
-  const response = await fetch(`${API_URL}/careers`, {
-    method: "GET",
-    headers
-  });
-  if (!response.ok) throw new Error("Error al cargar carreras");
-  return response.json();
+  try {
+    const response = await fetch(`${API_URL}/careers`, { method: "GET", headers });
+    if (!response.ok) throw new Error("Error al cargar carreras");
+    return response.json();
+  } catch (error) {
+    console.error("Error al obtener carreras:", error);
+    showToast('Error al cargar la lista de carreras', 'error');
+    return []; // Devuelve un array vacío en caso de error
+  }
 }
 
 /**
@@ -74,12 +77,15 @@ async function getAllCareers() {
  * @returns {Promise<Array>} Lista de categorías
  */
 async function getCategories() {
-  const response = await fetch(`${API_URL}/categories`, {
-    method: "GET",
-    headers
-  });
-  if (!response.ok) throw new Error("Error al cargar categorías");
-  return response.json();
+  try {
+    const response = await fetch(`${API_URL}/categories`, { method: "GET", headers });
+    if (!response.ok) throw new Error("Error al cargar categorías");
+    return response.json();
+  } catch(error) {
+    console.error("Error al obtener categorías:", error);
+    showToast('Error al cargar las categorías', 'error');
+    return []; // Devuelve un array vacío en caso de error
+  }
 }
 
 /**
@@ -91,7 +97,7 @@ function renderCareerCards(careers) {
   if (!container) return;
 
   if (!careers || careers.length === 0) {
-    container.innerHTML = '<p class="no-results">No hay carreras registradas.</p>';
+    container.innerHTML = '<p class="no-results">No se encontraron carreras con los filtros aplicados.</p>';
     return;
   }
 
@@ -118,7 +124,9 @@ function populateCategoryFilter(categories) {
   const select = document.getElementById('categoryFilter');
   if (!select) return;
 
+  // Limpiamos opciones previas por si acaso, pero mantenemos la primera
   select.innerHTML = '<option value="">Todas las categorías</option>';
+  
   categories.forEach(category => {
     const option = document.createElement('option');
     option.value = category.name;
@@ -130,52 +138,52 @@ function populateCategoryFilter(categories) {
 /**
  * Actualiza las estadísticas de carreras
  * @param {Array} careers - Lista de carreras
+ * @param {Array} categories - Lista de todas las categorías disponibles
  */
-function updateCareerStats(careers) {
-  if (!careers || !careers.length) {
-    document.getElementById('totalCareers').textContent = '0';
-    document.getElementById('averageDuration').textContent = '0';
-    document.getElementById('totalCategories').textContent = '0';
-    return;
-  }
+function updateCareerStats(careers, categories) {
+    if (!document.getElementById('totalCareers')) return;
 
-  const totalCareers = careers.length;
-  const durations = careers
-    .map(c => parseInt(c.duration) || 0)
-    .filter(d => d > 0);
+    const totalCareers = careers.length;
+    const durations = careers
+        .map(c => parseInt(c.duration) || 0)
+        .filter(d => d > 0);
 
-  const averageDuration = durations.length > 0
-    ? (durations.reduce((a, b) => a + b, 0) / durations.length).toFixed(1)
-    : '0';
+    const averageDuration = durations.length > 0
+        ? (durations.reduce((a, b) => a + b, 0) / durations.length).toFixed(1)
+        : '0';
 
-  const uniqueCategories = new Set(
-    careers.map(c => c.category).filter(Boolean)
-  ).size;
+    // Usamos el total de categorías cargadas, no solo las de las carreras filtradas
+    const totalCategories = categories.length;
 
-  document.getElementById('totalCareers').textContent = totalCareers;
-  document.getElementById('averageDuration').textContent = averageDuration;
-  document.getElementById('totalCategories').textContent = uniqueCategories;
+    document.getElementById('totalCareers').textContent = totalCareers;
+    document.getElementById('averageDuration').textContent = averageDuration;
+    document.getElementById('totalCategories').textContent = totalCategories;
 }
 
 /**
- * Filtra carreras por nombre y categoría
+ * Filtra carreras por nombre y categoría, y actualiza la vista
  */
-async function filterCareers() {
+async function filterAndUpdateView() {
   const searchTerm = document.getElementById('careerSearch')?.value.toLowerCase() || '';
   const categoryFilter = document.getElementById('categoryFilter')?.value || '';
 
   try {
-    const careers = await getAllCareers();
-    const filtered = careers.filter(career => {
+    // Obtenemos todos los datos frescos para asegurar consistencia
+    const [allCareers, allCategories] = await Promise.all([
+        getAllCareers(),
+        getCategories()
+    ]);
+    
+    const filteredCareers = allCareers.filter(career => {
       const matchesSearch = career.name.toLowerCase().includes(searchTerm) ||
         (career.description && career.description.toLowerCase().includes(searchTerm));
       const matchesCategory = !categoryFilter ||
-        (career.category && career.category === categoryFilter);
+        (career.category && career.category.toLowerCase() === categoryFilter.toLowerCase());
       return matchesSearch && matchesCategory;
     });
 
-    renderCareerCards(filtered);
-    updateCareerStats(filtered);
+    renderCareerCards(filteredCareers);
+    updateCareerStats(filteredCareers, allCategories); // Pasamos todas las categorías para el conteo total
   } catch (error) {
     console.error('Error filtrando carreras:', error);
     showToast('Error al filtrar carreras', 'error');
@@ -186,23 +194,28 @@ async function filterCareers() {
  * Inicializa la página de carreras
  */
 async function loadCareerPage() {
+  // Asegurarse que estamos en la página correcta
   if (!document.getElementById('careerGrid')) return;
 
   try {
+    // Carga inicial de datos
     const [careers, categories] = await Promise.all([
       getAllCareers(),
       getCategories()
     ]);
 
-    renderCareerCards(careers);
+    // Renderizado inicial
     populateCategoryFilter(categories);
-    updateCareerStats(careers);
+    renderCareerCards(careers);
+    updateCareerStats(careers, categories);
 
-    document.getElementById('careerSearch')?.addEventListener('input', filterCareers);
-    document.getElementById('categoryFilter')?.addEventListener('change', filterCareers);
+    // Asignación de eventos de forma programática
+    document.getElementById('careerSearch')?.addEventListener('input', filterAndUpdateView);
+    document.getElementById('categoryFilter')?.addEventListener('change', filterAndUpdateView);
+    
   } catch (error) {
     console.error('Error inicializando página de carreras:', error);
-    showToast('Error al cargar datos de carreras', 'error');
+    showToast('Error al cargar los datos de la página', 'error');
   }
 }
 

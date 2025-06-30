@@ -17,7 +17,7 @@
   --color-input-placeholder: #999;
   --color-input-text: #333;
   --input-padding: 0.8rem 1rem;
-  --ancho-maximo: 1100px;
+  --ancho-maximo: 1100px; /* Puedes ajustar este valor si quieres más ancho general */
 }
 
 /* ===== ESTILOS BASE ===== */
@@ -40,7 +40,7 @@ body {
 /* Se mantiene la clase main-container para las otras páginas */
 main.main-container {
   flex: 1;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem; /* Padding superior e inferior consistente */
   max-width: var(--ancho-maximo);
   margin: 0 auto;
 }
@@ -643,7 +643,7 @@ label {
   display: grid;
   grid-template-columns: 350px 1fr;
   gap: 2rem;
-  margin-top: 2rem;
+  /* Eliminado: margin-top: 2rem; */ /* ¡CAMBIO CLAVE! */
 }
 
 /* FORMULARIO */
@@ -653,8 +653,10 @@ label {
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra);
   height: fit-content;
-  position: sticky;
-  top: 1rem;
+  /* Eliminado: position: sticky; */
+  /* Eliminado: top: 1rem; */
+  flex: 0 0 350px;
+  max-width: 100%;
 }
 
 .career-form h2 {
@@ -844,11 +846,13 @@ label {
   transition: opacity 0.3s ease;
 }
 
+/* ===== LOADER ===== */
 .button-loading {
   opacity: 0.6;
   pointer-events: none;
 }
 
+/* ===== ANIMACIONES ===== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -858,10 +862,9 @@ label {
 .category-management {
   display: flex;
   gap: 2rem;
-  margin-top: 2rem;
-  align-items: auto; /* Asegura que se alineen arriba */
-  /* Añadimos flex-wrap para que si no hay espacio suficiente, los ítems se envuelvan */
+  align-items: flex-start; /* Alinea los ítems al inicio del contenedor flex */
   flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea si no hay espacio */
+  justify-content: center; /* Centra los elementos horizontalmente cuando se envuelven o hay espacio extra */
 }
 
 .category-form {
@@ -870,10 +873,12 @@ label {
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra);
   height: fit-content;
-  position: sticky;
-  top: 1rem;
-  flex: 0 0 350px; /* flex-grow:0, flex-shrink:0, flex-basis:350px */
-  max-width: 100%; /* Asegura que no se desborde en pantallas muy pequeñas */
+  /* Las propiedades sticky fueron eliminadas en una revisión anterior */
+  
+  /* Flexibilidad para el formulario: permite encogerse y crecer, con un ancho base preferido */
+  flex: 1 1 350px; /* flex-grow: 1, flex-shrink: 1, flex-basis: 350px */
+  min-width: 300px; /* Asegura que el formulario no sea demasiado pequeño antes de envolverse */
+  max-width: 100%; /* Evita desbordamientos en pantallas muy pequeñas */
 }
 
 .category-form h2 {
@@ -944,7 +949,9 @@ label {
   padding: 1.5rem;
   border-radius: var(--radio-borde);
   box-shadow: var(--sombra);
-  flex: 1; /* Permite que la lista crezca y ocupe el espacio restante */
+  /* Flexibilidad para la lista: permite encogerse y crecer, con un ancho base preferido */
+  flex: 1 1 450px; /* flex-grow: 1, flex-shrink: 1, flex-basis: 450px */
+  min-width: 300px; /* Asegura que la lista no sea demasiado pequeña antes de envolverse */
 }
 
 .section-header {
@@ -964,7 +971,6 @@ label {
 }
 
 .categories-grid {
-  /* ESTO YA ESTÁ CORRECTO PARA ENVOLVER LAS TARJETAS */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
