@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Carreras - StudentApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">StudentApp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">🏠 Inicio</a></li>
+        <li><a href="registro.html" class="nav-link">👤 Registro</a></li>
+        <li><a href="carreras.html" class="nav-link">🎓 Carreras</a></li>
+        <li><a href="categorias.html" class="nav-link">📂 Categorías</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <h1>🏗️ Gestión de Carreras</h1>
+    
+    <div class="career-management">
+      <section class="career-form">
+        <h2>➕ Crear Nueva Carrera</h2>
+        <form id="newCareerForm"> 
+          <div class="form-group">
+            <label for="careerName">Nombre de la carrera:</label>
+            <input type="text" id="careerName" placeholder="Ej: Ciencia de Datos">
+            <div id="nameError" class="error-feedback" style="display: none;"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="careerDuration">Duración (años):</label>
+            <input type="number" id="careerDuration" min="1" max="10" placeholder="Ej: 3">
+            <div id="durationError" class="error-feedback" style="display: none;"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="careerCategory">Categoría:</label>
+            <select id="careerCategory">
+              <option value="">Cargando categorías...</option>
+            </select>
+            <div id="categoryError" class="error-feedback" style="display: none;"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="careerDescription">Descripción:</label>
+            <textarea id="careerDescription" rows="3" placeholder="Descripción de la carrera"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="careerEmoji">Emoji representativo:</label>
+            <select id="careerEmoji">
+              <option value="🎓">🎓 Graduación</option>
+              <option value="📚">📚 Libros</option>
+              <option value="💻">💻 Computación</option>
+              <option value="⛑️">⛑️ Medicina</option>
+              <option value="🧪">🧪 Ciencias</option>
+              <option value="👷">👷 Construcción</option>
+              <option value="📊">📊 Datos</option>
+              <option value="🌐">🌐 Internet</option>
+              <option value="🎨">🎨 Arte</option>
+              <option value="🗣️">🗣️ Idiomas</option>
+            </select>
+          </div>
+          
+          <button type="submit" id="addCareerBtn" class="action-button">Crear Carrera</button>
+          <div id="addResult" class="result-container"></div>
+        </form>
+      </section>
+
+      <section class="career-list">
+        <h2>📋 Carreras Registradas</h2>
+        <div class="search-box">
+          <input type="text" id="careerSearchInput" placeholder="Buscar carreras...">
+        </div>
+        <div id="careerListContainer" class="careers-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Instituto</h4>
+        <p>Tecnicatura en Ciencia de Datos e IA</p>
+        <p>ISFDyT N°57</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>contacto@instituto.edu.ar</p>
+        <p>Tel: (123) 456-7890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 StudentApp - Todos los derechos reservados</p>
+    </div>
+  </footer>
+<script src="app.js" defer></script>
+</body>
+</html>

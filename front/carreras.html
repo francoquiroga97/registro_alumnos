@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carreras Disponibles - StudentApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">StudentApp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">🏠 Inicio</a></li>
+        <li><a href="registro.html" class="nav-link">👤 Registro</a></li>
+        <li><a href="nuevas-carreras.html" class="nav-link">➕ Nueva Carrera</a></li>
+        <li><a href="categorias.html" class="nav-link">🗂️ Categorías</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <div class="page-header">
+      <h1>🎓 Carreras Disponibles</h1>
+      <div class="search-box">
+        <input type="text" id="careerSearch" placeholder="Buscar carreras...">
+        <select id="categoryFilter">
+          <option value="">Todas las categorías</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="career-stats">
+      <div class="stat-card">
+        <span class="stat-number" id="totalCareers">0</span>
+        <span class="stat-label">Carreras Totales</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="averageDuration">0</span>
+        <span class="stat-label">Años promedio</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="totalCategories">0</span>
+        <span class="stat-label">Categorías</span>
+      </div>
+    </div>
+
+    <div class="career-grid" id="careerGrid">
+      <div class="loader">Cargando carreras...</div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Instituto</h4>
+        <p>Tecnicatura en Ciencia de Datos e IA</p>
+        <p>ISFDyT N°57</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>contacto@instituto.edu.ar</p>
+        <p>Tel: (123) 456-7890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 StudentApp - Todos los derechos reservados</p>
+    </div>
+  </footer>
+<script src="app.js"></script>
+</body>
+</html>

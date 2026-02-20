@@ -1,0 +1,1225 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --color-fondo: #faf1dd;
+  --color-primario: #790202;
+  --color-secundario: #600000;
+  --color-texto: #333;
+  --color-blanco: #fff;
+  --color-borde: #cc0000;
+  --color-input-fondo: #ffeeee;
+  --color-navbar: #000000;
+  --color-footer: #1a1a1a;
+  --sombra: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --radio-borde: 6px;
+  --color-input-border: #ddd;
+  --color-input-focus: var(--color-primario);
+  --color-input-error: #dc3545;
+  --color-input-placeholder: #999;
+  --color-input-text: #333;
+  --input-padding: 0.8rem 1rem;
+  --ancho-maximo: 1100px; /* Puedes ajustar este valor si quieres más ancho general */
+}
+
+/* ===== ESTILOS BASE ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Se mantiene la clase main-container para las otras páginas */
+main.main-container {
+  flex: 1;
+  padding: 2rem 1rem; /* Padding superior e inferior consistente */
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: var(--color-primario);
+  margin-bottom: 1rem;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background-color: var(--color-navbar);
+  box-shadow: var(--sombra);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-container {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--color-blanco);
+  font-size: 1.8rem;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  color: var(--color-blanco);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio-borde);
+  transition: background 0.3s;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  background-color: var(--color-primario);
+}
+
+/* ===== ELEMENTOS FORMULARIO ESTANDARIZADOS ===== */
+input[type="text"],
+input[type="number"],
+select,
+textarea,
+button {
+  width: 100%;
+  padding: var(--input-padding);
+  border: 2px solid var(--color-input-border);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+  font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-input-focus);
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.action-button {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.action-button:hover {
+  background-color: var(--color-secundario);
+}
+
+.danger-button {
+  background-color: var(--color-input-error);
+  color: var(--color-blanco);
+}
+
+.danger-button:hover {
+  background-color: #b02a37;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.error-feedback {
+  font-size: 0.85rem;
+  color: var(--color-input-error);
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.input-error {
+  border-color: var(--color-input-error) !important;
+}
+
+.input-success {
+  border-color: #28a745 !important;
+}
+
+/* ===== LAYOUT Y CENTRADO GENERAL ===== */
+.container {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.section {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background-color: var(--color-footer);
+  color: var(--color-blanco);
+  padding: 2rem 1.5rem;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--color-blanco);
+}
+
+.footer-section p {
+  margin: 0.3rem 0;
+  color: #ccc;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  padding-top: 1rem;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* ===== INICIO / HERO ===== */
+.hero {
+    display: flex;
+    flex-direction: column; /* Apila el texto y el carrusel */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background-color: var(--color-fondo); /* Fondo del hero */
+    width: 100%; /* Ocupa todo el ancho */
+    margin-bottom: 2rem; /* Espacio antes de las acciones destacadas */
+}
+
+.hero-text h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primario);
+}
+
+.hero-text .subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%; /* Para que las acciones destacadas puedan expandirse */
+}
+
+.hero-image { /* Si este elemento ya no se usa, puedes quitarlo */
+  max-width: 100%;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: var(--ancho-maximo); /* Para que no ocupe más del ancho máximo */
+  padding: 0 1.5rem; /* Padding a los lados */
+}
+
+.action-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-card h3 {
+  color: var(--color-primario);
+  margin-bottom: 0.5rem;
+}
+
+.action-card p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.action-card .action-button {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: var(--radio-borde);
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.action-card .action-button:hover {
+  background-color: var(--color-secundario);
+}
+
+/* ===== NUEVO LAYOUT PARA INICIO (CARRUSEL + ACTION-CARDS) ===== */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* antes era 1fr 1fr */
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.hero-layout .carousel-wrapper {
+  margin: 0; /* Eliminamos el margen auto */
+  justify-self: end; /* Lo empuja levemente a la izquierda */
+  max-width: 100%;
+}
+
+.hero-layout .hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== CARRUSEL DE INICIO ===== */
+.carousel-wrapper {
+    position: relative;
+    max-width: 800px;
+    width: 90%;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra);
+    background-color: var(--color-blanco);
+    aspect-ratio: 16 / 9;
+    display: flex; /* Añadido para centrar el carrusel en su wrapper */
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px; /* Ancho fijo para que no se extienda */
+    height: 40px; /* Alto fijo */
+    display: flex; /* Para centrar el contenido (la flecha) */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem; /* Tamaño de la flecha */
+    border-radius: 50%; /* Para que sea circular */
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carousel-indicators span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-indicators span.active {
+    background-color: var(--color-primario);
+    transform: scale(1.2);
+}
+
+
+/* ===== REGISTRO DE ESTUDIANTES ===== */
+#registro-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: nowrap;
+}
+
+.registro-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+  box-shadow: var(--sombra);
+}
+
+.registro-card h2 {
+  margin-bottom: 1rem;
+  color: var(--color-primario);
+}
+
+/* ===== FORMULARIOS ===== */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  display: block;
+  color: var(--color-texto);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: var(--input-padding);
+  border: 2px solid var(--color-input-border);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-input-focus);
+}
+
+/* ===== BOTONES ===== */
+.action-button {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+.action-button:hover {
+  background-color: var(--color-secundario);
+}
+
+.danger-card {
+  border-left: 5px solid var(--color-input-error);
+}
+
+.danger-button {
+  background-color: var(--color-input-error);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+}
+
+.danger-button:hover {
+  background-color: #b02a37;
+}
+
+/* ===== ERRORES DE VALIDACIÓN ===== */
+.input-error {
+  border-color: var(--color-input-error) !important;
+}
+
+.input-success {
+  border-color: #28a745 !important;
+}
+
+.error-feedback {
+  font-size: 0.85rem;
+  color: var(--color-input-error);
+  margin-top: 0.3rem;
+}
+
+/* ===== TABS DE BÚSQUEDA ===== */
+.search-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  background-color: #eee;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.tab-button.active {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.tab-button:hover {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+}
+
+.search-tab-content {
+  display: none;
+}
+
+.search-tab-content.active {
+  display: block;
+}
+
+/* ===== RESULTADOS DE BÚSQUEDA ===== */
+.result-container {
+  margin-top: 1rem;
+}
+
+.student-details {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: var(--radio-borde);
+  border-left: 4px solid var(--color-primario);
+}
+
+.students-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.student-card {
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: var(--radio-borde);
+}
+
+/* ===== TOASTS ===== */
+.toast-notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+  padding: 0.8rem 1rem;
+  border-left: 5px solid;
+  box-shadow: var(--sombra);
+  border-radius: var(--radio-borde);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.toast-notification.success { border-color: #28a745; }
+.toast-notification.error   { border-color: var(--color-input-error); }
+
+.toast-icon {
+  font-size: 1.2rem;
+}
+
+.toast-slide-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== LOADER ===== */
+.button-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== NUEVAS CARRERAS ===== */
+.career-management {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  /* Eliminado: margin-top: 2rem; */ /* ¡CAMBIO CLAVE! */
+}
+
+/* FORMULARIO */
+.career-form {
+  background: var(--color-blanco);
+  padding: 1.5rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  height: fit-content;
+  /* Eliminado: position: sticky; */
+  /* Eliminado: top: 1rem; */
+  flex: 0 0 350px;
+  max-width: 100%;
+}
+
+.career-form h2 {
+  margin-bottom: 1rem;
+  color: var(--color-primario);
+}
+
+/* CAMPOS DEL FORMULARIO */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: var(--color-texto);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: var(--input-padding);
+  border: 2px solid var(--color-input-border);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-input-focus);
+  outline: none;
+}
+
+.error-feedback {
+  font-size: 0.85rem;
+  color: var(--color-input-error);
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.input-error {
+  border-color: var(--color-input-error) !important;
+}
+
+.input-success {
+  border-color: #28a745 !important;
+}
+
+/* BOTÓN CREAR CARRERA */
+.action-button {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
+  margin-top: 1rem;
+}
+
+.action-button:hover {
+  background-color: var(--color-secundario);
+}
+
+/* SECCIÓN LISTADO */
+.career-list {
+  background: var(--color-blanco);
+  padding: 1.5rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+}
+
+.career-list h2 {
+  margin-bottom: 1rem;
+  color: var(--color-primario);
+}
+
+.search-box {
+  margin-bottom: 1.5rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+}
+
+/* GRID DE CARRERAS */
+.careers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* TARJETA DE CARRERA */
+.career-card {
+  border: 1px solid #eee;
+  border-radius: var(--radio-borde);
+  padding: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+}
+
+.career-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+}
+
+.career-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.career-emoji {
+  font-size: 1.5rem;
+}
+
+.career-header h3 {
+  font-size: 1.1rem;
+  color: var(--color-primario);
+  margin: 0;
+}
+
+.career-details {
+  margin: 1rem 0;
+  color: #555;
+}
+
+.career-details p {
+  margin-bottom: 0.5rem;
+}
+
+/* BOTÓN ELIMINAR */
+.danger-button {
+  background-color: var(--color-input-error);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.danger-button:hover {
+  background-color: #b02a37;
+}
+
+/* TOAST NOTIFICATIONS */
+.toast-notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+  padding: 0.8rem 1rem;
+  border-left: 5px solid;
+  box-shadow: var(--sombra);
+  border-radius: var(--radio-borde);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.toast-notification.success { border-color: #28a745; }
+.toast-notification.error   { border-color: var(--color-input-error); }
+
+.toast-icon {
+  font-size: 1.2rem;
+}
+
+.toast-slide-out {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== LOADER ===== */
+.button-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== GESTIÓN DE CATEGORÍAS ===== */
+.category-management {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start; /* Alinea los ítems al inicio del contenedor flex */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea si no hay espacio */
+  justify-content: center; /* Centra los elementos horizontalmente cuando se envuelven o hay espacio extra */
+}
+
+.category-form {
+  background: var(--color-blanco);
+  padding: 1.5rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  height: fit-content;
+  /* Las propiedades sticky fueron eliminadas en una revisión anterior */
+  
+  /* Flexibilidad para el formulario: permite encogerse y crecer, con un ancho base preferido */
+  flex: 1 1 350px; /* flex-grow: 1, flex-shrink: 1, flex-basis: 350px */
+  min-width: 300px; /* Asegura que el formulario no sea demasiado pequeño antes de envolverse */
+  max-width: 100%; /* Evita desbordamientos en pantallas muy pequeñas */
+}
+
+.category-form h2 {
+  margin-bottom: 1rem;
+  color: var(--color-primario);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: var(--color-texto);
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: var(--input-padding);
+  padding-right: 2.5rem;
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+}
+
+.input-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-input-placeholder);
+}
+
+.form-hint {
+  font-size: 0.85rem;
+  color: var(--color-input-placeholder);
+  margin-top: 0.3rem;
+}
+
+.action-button {
+  background: var(--color-primario);
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.action-button:hover {
+  background: #a80000;
+}
+
+.category-list {
+  background: var(--color-blanco);
+  padding: 1.5rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  /* Flexibilidad para la lista: permite encogerse y crecer, con un ancho base preferido */
+  flex: 1 1 450px; /* flex-grow: 1, flex-shrink: 1, flex-basis: 450px */
+  min-width: 300px; /* Asegura que la lista no sea demasiado pequeña antes de envolverse */
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.category-card {
+  border: 1px solid #eee;
+  border-radius: var(--radio-borde);
+  padding: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: white;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra);
+}
+
+.category-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.category-info h3 {
+  margin: 0.5rem 0;
+  color: var(--color-primario);
+}
+
+.category-meta {
+  font-size: 0.9rem;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+}
+
+.danger-button {
+  background: var(--color-primario);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.danger-button:hover {
+  background: #c82333;
+}
+
+.loading-spinner {
+  text-align: center;
+  color: var(--color-texto);
+}
+
+.spinner {
+  border: 4px solid #eee;
+  border-top: 4px solid var(--color-primario);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--color-blanco);
+  border-left: 6px solid;
+  padding: 1rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 300px;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.notification.success {
+  border-color: #28a745;
+}
+
+.notification.error {
+  border-color: var(--color-input-error);
+}
+
+.notification-icon {
+  font-size: 1.5rem;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.notification.fade-out {
+  opacity: 0;
+}
+
+/* ===== CARRERAS DISPONIBLES ===== */
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  color: var(--color-primario);
+  font-size: 1.8rem;
+}
+
+.search-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.search-box input,
+.search-box select {
+  flex: 1;
+  min-width: 220px;
+  padding: var(--input-padding);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  background-color: var(--color-input-fondo);
+  color: var(--color-input-text);
+}
+
+/* ===== ESTADÍSTICAS ===== */
+.career-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  padding: 1rem 1.5rem;
+  flex: 1;
+  min-width: 180px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-primario);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  margin-top: 0.3rem;
+}
+
+/* ===== GRID DE CARRERAS ===== */
+.career-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== TARJETA DE CARRERA ===== */
+.career-card {
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  padding: 1.2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.career-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.career-emoji {
+  font-size: 2rem;
+}
+
+.career-content h3 {
+  color: var(--color-primario);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.career-meta {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.career-description {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ===== MENSAJES ===== */
+.no-results {
+  text-align: center;
+  color: #888;
+  padding: 2rem 0;
+}
+
+.loader {
+  text-align: center;
+  color: #999;
+  padding: 2rem;
+}
+
+/* ===== NOTIFICACIONES ===== */
+.notification {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
+  padding: 1rem;
+  border-left: 5px solid;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  z-index: 1000;
+  font-size: 0.95rem;
+}
+
+.notification.success { border-color: #28a745; }
+.notification.error { border-color: var(--color-input-error); }

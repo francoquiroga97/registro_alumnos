@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Categorías - StudentApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">StudentApp</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">🏠 Inicio</a></li>
+        <li><a href="registro.html" class="nav-link">👤 Registro</a></li>
+        <li><a href="carreras.html" class="nav-link">🎓 Carreras</a></li>
+        <li><a href="nuevas-carreras.html" class="nav-link">➕ Nueva Carrera</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-container">
+    <h1>🗂️ Gestión de Categorías</h1>
+    
+<section class="category-form">
+        <h2>➕ Crear Nueva Categoría</h2>
+        <div class="form-group">
+          <label for="categoryName">
+            <span class="label-icon">🏷️</span>
+            Nombre de la categoría
+          </label>
+          <input type="text" id="categoryName" placeholder="Ej: Desarrollo Web">
+          <div id="nameError" class="error-feedback" style="display: none;"></div>
+          <small>El nombre de la categoría no debe tener símbolos especiales</small>
+        </div>
+
+        <div class="form-group">
+          <label for="categoryDescription">
+            <span class="label-icon">📝</span>
+            Descripción
+          </label>
+          <textarea id="categoryDescription" placeholder="Ej: Formación orientada al desarrollo..." rows="3"></textarea>
+          <small>Una breve descripción de la categoría.</small>
+        </div>
+        
+        <button id="addCategoryBtn" class="action-button with-icon">
+  <span class="btn-icon">✅</span>
+  Crear Categoría
+</button>
+        <div id="addResult" class="result-container"></div>
+      </section>
+
+      <section class="category-list">
+        <div class="section-header">
+          <h2>📋 Categorías Registradas</h2>
+          <div class="search-box">
+            <input type="text" id="categorySearch" placeholder="🔍 Buscar por nombre o ID...">
+          </div>
+        </div>
+        
+        <div id="categoryList" class="categories-grid">
+          <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Cargando categorías...</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Instituto</h4>
+        <p>Tecnicatura en Ciencia de Datos e IA</p>
+        <p>ISFDyT N°57</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contacto</h4>
+        <p>contacto@instituto.edu.ar</p>
+        <p>Tel: (123) 456-7890</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 StudentApp - Todos los derechos reservados</p>
+    </div>
+  </footer>
+<script src="app.js" defer></script>
+</body>
+</html>
